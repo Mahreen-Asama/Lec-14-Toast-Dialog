@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/toast_test"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="92dp"
@@ -17,24 +17,24 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/dialog_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginTop="20dp"
-        android:text="Button"
-        app:layout_constraintStart_toStartOf="@+id/button2"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        android:text="Dialog With List"
+        app:layout_constraintStart_toStartOf="@+id/dialog_alert"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_alert" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/dialog_alert"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginTop="36dp"
-        android:text="Button"
-        app:layout_constraintStart_toStartOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        android:text="Dialog Alert"
+        app:layout_constraintStart_toStartOf="@+id/toast_test"
+        app:layout_constraintTop_toBottomOf="@+id/toast_test" />
 
     <Button
         android:id="@+id/toast_simple"
@@ -43,7 +43,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginBottom="67dp"
         android:text="Simple Toast"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintStart_toStartOf="@+id/button" />
+        app:layout_constraintBottom_toTopOf="@+id/toast_test"
+        app:layout_constraintStart_toStartOf="@+id/toast_test" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

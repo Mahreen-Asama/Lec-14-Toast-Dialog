@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,16 +24,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         b0=findViewById(R.id.toast_simple);
-        b=findViewById(R.id.button);
-        b2=findViewById(R.id.button2);
-        b3=findViewById(R.id.button3);
+        b=findViewById(R.id.toast_test);
+        b2=findViewById(R.id.dialog_alert);
+        b3=findViewById(R.id.dialog_list);
+        int c1=getResources().getColor(R.color.teal_200);
 
         //simple toast
         b0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast t=Toast.makeText(MainActivity.this,"Text toast",Toast.LENGTH_LONG);
+                Toast t=Toast.makeText(MainActivity.this,"simple toast",Toast.LENGTH_LONG);
                 t.show();
+                Log.d("888888888888","simpl toast clikkkkkkkk");
             }
         });
         //customized toast
@@ -49,11 +52,11 @@ public class MainActivity extends AppCompatActivity {
                 Toast toast=new Toast(getApplicationContext());
                 toast.setDuration(Toast.LENGTH_LONG);
                 toast.setView(mylayout);
-                toast.setGravity(Gravity.CENTER,0,0);
+                toast.setGravity(Gravity.CENTER|Gravity.RIGHT,100,200);
                 toast.show();
             }
         });
-
+        //alert dialog
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,23 +64,33 @@ public class MainActivity extends AppCompatActivity {
                 builder.setTitle("Title here");
                 builder.setMessage("Meessage here");
                 builder.setCancelable(false);
-                builder.setPositiveButton("positive btn", new DialogInterface.OnClickListener() {
+                //positive btn = leave
+                builder.setPositiveButton("leave btn", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         finish();
                     }
                 });
-                builder.setNegativeButton("negative btn", new DialogInterface.OnClickListener() {
+                //negative btn = stay
+                builder.setNegativeButton("stay btn", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.cancel();
+                    }
+                });
+                //what-up btn = guidance(about what to do)
+                builder.setNeutralButton("what up", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(getApplicationContext(),"Click leave to close and stay to cancel",
+                                Toast.LENGTH_LONG).show();
                     }
                 });
                 AlertDialog alertDialog=builder.create();
                 alertDialog.show();
             }
         });
-
+        //alert dailog with list
         b3.setOnClickListener(new View.OnClickListener() {
             String []colos={"green","blue","red","yellow"};
 

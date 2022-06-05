@@ -14,9 +14,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
-    Button b0,b,b2,b3;
+    Button b0,b,b2,b3,checkbox,login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,14 +29,17 @@ public class MainActivity extends AppCompatActivity {
         b=findViewById(R.id.toast_test);
         b2=findViewById(R.id.dialog_alert);
         b3=findViewById(R.id.dialog_list);
+        checkbox=findViewById(R.id.checkbox_alert);
+        login=findViewById(R.id.login_alert);
+
         int c1=getResources().getColor(R.color.teal_200);
 
         //simple toast
         b0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast t=Toast.makeText(MainActivity.this,"simple toast",Toast.LENGTH_LONG);
-                t.show();
+                Toast.makeText(getBaseContext(),"simple toast",Toast.LENGTH_LONG).show();
+                //t.show();
                 Log.d("888888888888","simpl toast clikkkkkkkk");
             }
         });
@@ -106,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
                         ImageView img=mylayout.findViewById(R.id.imageView);
                         TextView tv=mylayout.findViewById(R.id.toast);
                         tv.setText(colos[i]);
+                        //tv.setTextColor(Integer.parseInt(colos[i]));
 
                         Toast toast=new Toast(getApplicationContext());
                         toast.setDuration(Toast.LENGTH_LONG);
@@ -115,10 +121,73 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
                 builder.setCancelable(false);
-
-
                 AlertDialog alertDialog=builder.create();
                 alertDialog.show();
+            }
+        });
+        //check boxes alert.........
+        checkbox.setOnClickListener(new View.OnClickListener() {
+            String []clrs={"green","blue","red"};
+            @Override
+            public void onClick(View view) {
+                ArrayList<Integer> selectedItems=new ArrayList(); //when we track the selected items
+
+                AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Select options")
+                        .setMultiChoiceItems(clrs, null,new DialogInterface.OnMultiChoiceClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                                if (isChecked) {
+                                    selectedItems.add(which);
+                                } else if (selectedItems.contains(which)) {
+                                    selectedItems.remove(Integer.valueOf(which));
+                                }
+                            }
+                        });
+                builder.setCancelable(false);
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String msg = "";
+                        for (int i = 0; i < selectedItems.size(); i++) {
+                            msg = msg + "\n" + (i + 1) + " : " + clrs[ selectedItems.get(i)];
+                        }
+                        Toast.makeText(getApplicationContext(), "Total " + selectedItems.size() + " Items Selected.\n" + msg, Toast.LENGTH_SHORT).show();
+                    }
+                });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(MainActivity.this,"No Option Selected",Toast.LENGTH_SHORT).show();
+                    }
+                });
+                AlertDialog dialog  = builder.create();
+                dialog.show();
+            }
+        });
+        //login alert
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this);
+                LayoutInflater inflater=getLayoutInflater();
+                View signin=inflater.inflate(R.layout.sign_in,null);
+                builder.setView(signin);    //set view
+                builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();  //stay there
+                    }
+                });
+                builder.setPositiveButton("SIGN IN", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //sign in user
+                        Toast.makeText(MainActivity.this,"Successful login",Toast.LENGTH_LONG).show();
+                    }
+                });
+                AlertDialog dialog  = builder.create();
+                dialog.show();
             }
         });
     }

@@ -46,4 +46,24 @@
         app:layout_constraintBottom_toTopOf="@+id/toast_test"
         app:layout_constraintStart_toStartOf="@+id/toast_test" />
 
+    <Button
+        android:id="@+id/checkbox_alert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:layout_marginBottom="18dp"
+        android:text="Checkbox alert"
+        app:layout_constraintBottom_toTopOf="@+id/login_alert"
+        app:layout_constraintStart_toStartOf="@+id/login_alert" />
+
+    <Button
+        android:id="@+id/login_alert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginBottom="151dp"
+        android:text="Login Alert"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

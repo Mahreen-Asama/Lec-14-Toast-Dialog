@@ -15,17 +15,27 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button b,b2,b3;
+    Button b0,b,b2,b3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        b0=findViewById(R.id.toast_simple);
         b=findViewById(R.id.button);
         b2=findViewById(R.id.button2);
         b3=findViewById(R.id.button3);
 
+        //simple toast
+        b0.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast t=Toast.makeText(MainActivity.this,"Text toast",Toast.LENGTH_LONG);
+                t.show();
+            }
+        });
+        //customized toast
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

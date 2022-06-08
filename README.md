@@ -3,6 +3,10 @@ Toast, Dialog, (animation -> popUp menus) concept in android studio
 
 <table> 
   <tr>
+    <th> Checkboxes Dialog </th>
+    <th> Customized Dialog Box </th>
+  </tr>
+  <tr>
     <td>
       <img src="https://user-images.githubusercontent.com/79749919/172580318-3d4e2e97-a5c2-4bff-9617-1e8a3561cb42.png">
     </td>
